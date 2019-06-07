@@ -47,8 +47,8 @@ To change the database url
 2. To go to Previous images click on previous button left to image.
 3. To go to Next images click on Next button right to image.
 4. If any of the Previous/ Next buttons are disabled indicates you have reached the last/ first image.
-5. By cycling through the images you can edit the images as required and click the save changes button to save the changes to database.
-
+5. By cycling through the images you can edit the images as required and click the save changes button to save the changes to database.<br/>
+***Note: All the images can be found in `uploads/` which will be in the root folder of the application***
 ### *View Selected region of interest or Bounding boxes*
 1. The Bounding box data is formated as Json object and stored in data base. Go to images collection on your mongDB and view the Bounding box array to see the Bounding box regions.
 2. Bounding box Array will have `posInPixel` and `posInPercent` objects which indicate the  values of `{x1,x2,y1,y2,height,width}` of the bounding box in pixels and percentages respectively.
