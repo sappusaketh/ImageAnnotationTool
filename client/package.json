@@ -8,9 +8,6 @@
     "react": "^16.8.6",
     "react-cursor-position": "^3.0.3",
     "react-dom": "^16.8.6",
-    "react-image-crop": "^8.0.0",
-    "react-rectangle-selection": "^1.0.4",
-    "react-region-select": "^2.3.0",
     "react-resizable": "^1.8.0",
     "react-scripts": "3.0.1"
   },
