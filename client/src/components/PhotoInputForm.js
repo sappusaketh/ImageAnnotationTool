@@ -42,6 +42,7 @@ export default class PhotoInputForm extends React.Component {
         } else {
           const { image, prevImage, nextImage } = res;
           this.setState({
+            respose: null,
             imageId: image._id,
             imageUrl: `${url}/${image.imageName}`,
             annotation: image.text,
@@ -153,7 +154,8 @@ export default class PhotoInputForm extends React.Component {
       upload,
       prevImage,
       nextImage,
-      remove
+      remove,
+      respose
     } = this.state;
     return (
       <>
@@ -167,7 +169,7 @@ export default class PhotoInputForm extends React.Component {
             onChange={this.handleChange}
           />
         </div>
-
+        {respose ? <h1 className='txt-al-c'>{respose}</h1> : ''}
         {imageUrl && (
           <>
             <div className='imgForm'>
