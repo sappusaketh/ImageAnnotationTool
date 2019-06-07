@@ -6,6 +6,7 @@ import { getImage, addImage, editImage } from '../api/api';
 import ImageComponent from './ImageComponent';
 import deleteElementByClass from '../utils/deleteElementByClass';
 
+const url = 'http://localhost:5000/images';
 const defaultState = {
   height: 200,
   width: 200,
@@ -42,7 +43,7 @@ export default class PhotoInputForm extends React.Component {
           const { image, prevImage, nextImage } = res;
           this.setState({
             imageId: image._id,
-            imageUrl: image.imageurl,
+            imageUrl: `${url}/${image.imageName}`,
             annotation: image.text,
             height: image.height,
             width: image.width,
@@ -111,7 +112,7 @@ export default class PhotoInputForm extends React.Component {
         imageId: image._id,
         height: image.height ? image.height : 200,
         width: image.width ? image.width : 200,
-        imageUrl: image.imageurl,
+        imageUrl: `${url}/${image.imageName}`,
         annotation: image.text,
         prevImage,
         nextImage

@@ -14,7 +14,7 @@ router.post('/addimage', async (req, res) => {
   }
   let { height, width, text } = req.body;
   try {
-    let imageurl;
+    let imageName;
     if (req.files) {
       let image = req.files.image;
       if (
@@ -23,9 +23,8 @@ router.post('/addimage', async (req, res) => {
         return res.status(415).json({ image: 'invalid image type' });
       }
       const date = Date.now();
-      imageurl = date + '-' + image.name;
-      await image.mv('uploads/' + imageurl);
-      imageurl = `http://localhost:5000/images/${imageurl}`;
+      imageName = date + '-' + image.name;
+      await image.mv('uploads/' + imageName);
     }
     let BoundingBox;
     if (req.body.BoundingBox) {
@@ -33,7 +32,7 @@ router.post('/addimage', async (req, res) => {
     }
 
     image = new Image({
-      imageurl,
+      imageName,
       height,
       width,
       text,
@@ -91,9 +90,6 @@ router.get('/getimage/:image_id', async (req, res) => {
 router.post(
   '/edit/:image_id',
   [
-    check('text', 'text is required')
-      .not()
-      .isEmpty(),
     check('height', 'height is required')
       .not()
       .isEmpty(),
