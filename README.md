@@ -43,7 +43,7 @@ To change the database url
 ### *Multiple Uploads*
 1. Follow the above steps for as many images as required.
 ### *View uploaded images*
-1. If there are any images in database the by going to <a href="http://localhost:3000/">http://localhost:3000/</a> will display the latest uploaded image in image display area with recent changes made. 
+1. If there are any images in database then by going to <a href="http://localhost:3000/">http://localhost:3000/</a> will display the latest uploaded image in image display area with recent changes made. 
 2. To go to Previous images click on previous button left to image.
 3. To go to Next images click on Next button right to image.
 4. If any of the Previous/ Next buttons are disabled indicates you have reached the last/ first image.
