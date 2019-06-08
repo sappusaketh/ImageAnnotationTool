@@ -7,44 +7,55 @@ const Image = require('../models/Image');
 // @desc    Add a Image
 // @access  public
 
-router.post('/addimage', async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  let { height, width, text } = req.body;
-  try {
-    let imageName;
-    if (req.files) {
-      let image = req.files.image;
-      if (
-        !(image.mimetype === 'image/jpeg' || image.mimetype === 'image/png')
-      ) {
-        return res.status(415).json({ image: 'invalid image type' });
+router.post(
+  '/addimage',
+  [
+    check('height', 'height is required')
+      .not()
+      .isEmpty(),
+    check('width', 'width is required')
+      .not()
+      .isEmpty()
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    let { height, width, text } = req.body;
+    try {
+      let imageName;
+      if (req.files) {
+        let image = req.files.image;
+        if (
+          !(image.mimetype === 'image/jpeg' || image.mimetype === 'image/png')
+        ) {
+          return res.status(415).json({ image: 'invalid image type' });
+        }
+        const date = Date.now();
+        imageName = date + '-' + image.name;
+        await image.mv('uploads/' + imageName);
       }
-      const date = Date.now();
-      imageName = date + '-' + image.name;
-      await image.mv('uploads/' + imageName);
-    }
-    let BoundingBox;
-    if (req.body.BoundingBox) {
-      BoundingBox = JSON.parse(req.body.BoundingBox);
-    }
+      let BoundingBox;
+      if (req.body.BoundingBox) {
+        BoundingBox = JSON.parse(req.body.BoundingBox);
+      }
 
-    image = new Image({
-      imageName,
-      height,
-      width,
-      text,
-      BoundingBox
-    });
-    await image.save();
-    return res.status(200).send('Image Saved');
-  } catch (error) {
-    console.log(error.message);
-    res.status(400).send(error.message);
+      image = new Image({
+        imageName,
+        height,
+        width,
+        text,
+        BoundingBox
+      });
+      await image.save();
+      return res.status(200).send('Image Saved');
+    } catch (error) {
+      console.log(error.message);
+      res.status(400).send(error.message);
+    }
   }
-});
+);
 
 // @route   GET image/getimage/:image_id
 // @desc    get image by id

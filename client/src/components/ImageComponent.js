@@ -19,7 +19,7 @@ const setMousePosition = props => {
 const imageClick = props => {
   if (element !== null) {
     element = null;
-    document.getElementById('something').style.cursor = 'default';
+    document.getElementById('imgWrapper').style.cursor = 'default';
     let posInPercent = {};
     posInPercent = { ...mouse };
     posInPercent.width = document.getElementById(
@@ -47,8 +47,8 @@ const imageClick = props => {
     element.style.left = mouse.x2 + '%';
     element.style.top = mouse.y2 + '%';
 
-    document.getElementById('something').appendChild(element);
-    document.getElementById('something').style.cursor = 'crosshair';
+    document.getElementById('imgWrapper').appendChild(element);
+    document.getElementById('imgWrapper').style.cursor = 'crosshair';
   }
 };
 
@@ -67,7 +67,7 @@ const mouseMove_Image = props => {
 function ImageComponent(props) {
   return (
     <div
-      id='something'
+      id='imgWrapper'
       style={{
         height: `${props.height}px`,
         width: `${props.width}px`
@@ -75,7 +75,7 @@ function ImageComponent(props) {
       onClick={() => imageClick(props)}
       onMouseMove={mouseMove_Image(props)}
     >
-      <img src={props.image} alt='' id='currImage' />
+      <img src={props.image} alt={props.image} id='currImage' />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { getImage, addImage, editImage } from '../api/api';
 import ImageComponent from './ImageComponent';
 import deleteElementByClass from '../utils/deleteElementByClass';
 
-const url = 'http://localhost:5000/images';
+const url = '/images';
 const defaultState = {
   height: 200,
   width: 200,
@@ -15,7 +15,7 @@ const defaultState = {
   nextImage: ''
 };
 
-export default class PhotoInputForm extends React.Component {
+export default class ImageInputForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,7 +61,7 @@ export default class PhotoInputForm extends React.Component {
       BoundingBox: BoundingBox
     });
   }
-  // Add/Edit image hadler
+  // Add/Edit image handler
   handleClick(e) {
     const {
       image,
